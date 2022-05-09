@@ -27,6 +27,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Welcome D Class</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
+<!-- Popper JS -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
 <style>
     #login-form, #user-info { float: right;}
     #user-info a {
@@ -99,12 +109,28 @@
               <tr>
                   <th colspan="2">
                       <button type="submit">로그인</button>
-                      <button type="button">회원가입</button>
+                      <button type="button" onclick="enrollPage();">회원가입</button>
                   </th>
               </tr>
              
           </table>
         </form>
+        
+        <script>
+            function enrollPage() {
+            	
+            	// 회원가입 페이지로 이동시키는 역할  
+            	//location.href = "<%= contextPath %>/views/member/memberEnrollForm.jsp";
+            	// 웹 애플리케이션의 디렉토리 구조가 url에 노출되면 보안에 취약
+            	
+            	//단순한 정적인 페이지 요청이라고 해도 반드시 servlet을 거쳐갈것!
+            	//=> url에 서블릿 맵핑값만 보이게끔 해줄것임
+            	location.href="<%= contextPath %>/enrollForm.me";          	
+            }
+        </script>
+        
+        
+        
         <% } else { %>
         
         <!--로그인 성공 후 xxx님 환영합니다 화면 -->
@@ -112,7 +138,7 @@
         <div id="user-info">
             <b><%= loginUser.getUserName() %>님</b> 환영합니다. <br><br>
             <div align="center">
-                <a href="">마이페이지</a>
+                <a href="<%= contextPath %>/myPage.me">마이페이지</a>
                 <a href="<%= contextPath %>/logout.me">로그아웃</a>
             </div>      
         </div>
@@ -124,8 +150,8 @@
     <!--메뉴바 영역-->
     <div class="nav-area" align="center">
         <!--(div.menu>a)*4 + 엔터 -->
-        <div class="menu"><a href="">HOME</a></div>
-        <div class="menu"><a href="">공지사항</a></div>
+        <div class="menu"><a href="<%= contextPath %>">HOME</a></div>
+        <div class="menu"><a href="<%= contextPath %>/list.no">공지사항</a></div>
         <div class="menu"><a href="">일반게시판</a></div>
         <div class="menu"><a href="">사진게시판</a></div>
     </div>
